@@ -36,10 +36,21 @@ Además, el sistema permite ejecutar sentencias SQL, visualizar resultados de co
 
 ## 5.Tecnologías Utilizadas
 
-- Java
+- Java (NetBeans IDE)
 - Java Swing
 - JDBC
-- SQL Anywhere 17
-- NetBeans IDE
-- SQL Central
+
+---
+
+## 6. Creacion de Clases En Java
+
+Para la creacion de este administrador, se necesita crear un nuevo proyecto de netbeans, donde se hara acabo el mismo. En este caso se creo 6 clases, 
+las cuales cada una tiene los siguientes propositos:
+
+- ProyectoTBD2: la clase main y encargada de llamar a el login para empezar el programa
+- LoginFrame: clase en la que se maneja la informacion ingresada para ingresar a la base de datos basado en sql anywhere y los atributos que tiene esa base de datos, ya sea un archivo local o una base de datos que se pueda conectar por medio del IP
+- DataBaseConnection: esta clase es la que se encarga de conectar a la base de datos que se ingrese en el login
+- DashBoardFrame: clase que incluye todo el interfaz visual del administrador y se encarga que aparezcan los objetos de la base de datos de la base de datos en uso
+- MetaDataManager: clase que maneja todos los sql que hacen los system tables para leer toda la metadata dentro la base de datos que se ha ingresado
+- QueryExecutor
 
