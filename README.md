@@ -52,5 +52,8 @@ las cuales cada una tiene los siguientes propositos:
 - DataBaseConnection: esta clase es la que se encarga de conectar a la base de datos que se ingrese en el login
 - DashBoardFrame: clase que incluye todo el interfaz visual del administrador y se encarga que aparezcan los objetos de la base de datos de la base de datos en uso
 - MetaDataManager: clase que maneja todos los sql que hacen los system tables para leer toda la metadata dentro la base de datos que se ha ingresado
-- QueryExecutor
+- QueryExecutor: clase encargada de manejar todos los sql que se quieran ejecutar
+
+## 7. Coneccion a Base de Datos
+
 
