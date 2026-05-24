@@ -56,4 +56,32 @@ las cuales cada una tiene los siguientes propositos:
 
 ## 7. Coneccion a Base de Datos
 
+Para la implementación de la interfaz visual se utilizó **Apache NetBeans**.
+
+La conexión entre Java y SQL Anywhere se realizó mediante **JDBC (Java Database Connectivity)**.
+
+Se agregó la librería:
+
+```
+sajdbc4.jar
+```
+
+Ubicada en:
+
+```
+C:\Program Files\SQL Anywhere 17\Java\sajdbc4.jar
+```
+
+La conexión se realiza mediante una cadena de conexión como la siguiente:
+
+```java
+String url = "jdbc:sqlanywhere:uid=Maria Rodriguez;pwd=********;"
+        + "dbf=C:/Users/Maria Gabriela/OneDrive/Desktop/Ingenieria en Sistemas/TBD/22441044_ProyectoTBD.db";
+```
+
+Esto permite que la aplicación Java pueda ejecutar consultas SQL directamente en la base de datos.
+
+Esta conexion es mediante un dbf(data base file) ya que mi base de datos era local, cargandose con un archivo.
+
+---
 
