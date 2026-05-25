@@ -15,11 +15,8 @@ public class DataBaseConnection {
             }else{
                 url = "jdbc:sqlanywhere:"+"host="+host+":"+port+";"+"eng="+engine+";"+ "uid=" + user + ";"+"pwd="+password;
             }
-            System.out.println(url);
             connection =DriverManager.getConnection(url);
-            System.out.println("Connected successfully!");
         } catch (Exception e) {
-            System.out.println("Connection error");
             e.printStackTrace();
         }
         return connection;

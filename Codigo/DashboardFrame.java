@@ -123,6 +123,7 @@ public class DashboardFrame extends JFrame {
         r.setLeafIcon(null); r.setOpenIcon(null); r.setClosedIcon(null);
         tree.setCellRenderer(r);
 
+        // ── Double click: SELECT * en tablas ──────────────────────────────────
         tree.addMouseListener(new MouseAdapter() {
             @Override public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() != 2) return;
@@ -400,15 +401,27 @@ public class DashboardFrame extends JFrame {
         if (session == null) { JOptionPane.showMessageDialog(this, "Select a connection first"); return; }
         try {
             StringBuilder sql = new StringBuilder("CREATE TABLE " + txtTable.getText() + " (\n");
+            ArrayList<String> pkList = new ArrayList<>();
             for (int i = 0; i < model.getRowCount(); i++) {
-                sql.append("    ").append(model.getValueAt(i,0)).append(" ").append(model.getValueAt(i,1));
-                if ((boolean) model.getValueAt(i,3)) sql.append(" NOT NULL");
-                if ((boolean) model.getValueAt(i,2)) sql.append(" PRIMARY KEY");
+                String colName = model.getValueAt(i,0).toString().trim();
+                String colType = model.getValueAt(i,1).toString().trim();
+                boolean nn = (boolean) model.getValueAt(i,3);
+                boolean pk = (boolean) model.getValueAt(i,2);
+                if (colName.isEmpty()) continue;
+                sql.append("    ").append(colName).append(" ").append(colType);
+                if (nn) sql.append(" NOT NULL");
                 sql.append(",\n");
+                if (pk) pkList.add(colName);
             }
-            int last = sql.lastIndexOf(",");
-            if (last != -1) sql.deleteCharAt(last);
-            sql.append("\n)");
+            if (!pkList.isEmpty()) {
+                sql.append("    PRIMARY KEY (");
+                sql.append(String.join(", ", pkList));
+                sql.append(")\n");
+            } else {
+                int last = sql.lastIndexOf(",");
+                if (last != -1) sql.deleteCharAt(last);
+            }
+            sql.append(")");
             QueryExecutor.executeQuery(session.getConnection(), sql.toString());
             reloadTree();
             lblStatus.setText("Table created: " + txtTable.getText());
